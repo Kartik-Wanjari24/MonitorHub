@@ -19,6 +19,7 @@ import {
   PlusCircle,
   ChevronRight,
 } from 'lucide-react';
+import { ProfileImage } from '../../components/common/ProfileImage';
 
 export const PatientRecordsPage: React.FC = () => {
   const { t } = useLanguage();
@@ -182,13 +183,20 @@ export const PatientRecordsPage: React.FC = () => {
                       key={patient.id}
                       type="button"
                       onClick={() => handleSelectPatient(patient)}
-                      className={`w-full p-4 text-left transition-all flex items-start justify-between gap-3 ${
+                      className={`w-full p-4 text-left transition-all flex items-start gap-3 ${
                         isSelected
                           ? 'bg-sky-50/80 border-l-4 border-sky-600'
                           : 'hover:bg-slate-50 border-l-4 border-transparent'
                       }`}
                     >
-                      <div className="min-w-0">
+                      <ProfileImage
+                        type="patient"
+                        identifier={patient.id}
+                        name={patient.fullName}
+                        size="sm"
+                        className="mt-0.5"
+                      />
+                      <div className="min-w-0 flex-1">
                         <div className="flex items-center gap-1.5 flex-wrap">
                           <p className="font-bold text-slate-900 text-sm truncate">
                             {patient.fullName}
@@ -223,8 +231,16 @@ export const PatientRecordsPage: React.FC = () => {
               <div>
                 {/* Header Card */}
                 <div className="p-5 sm:p-6 bg-gradient-to-r from-slate-900 to-sky-950 text-white">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <div>
+                  <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+                    <div className="flex items-start gap-4">
+                      <ProfileImage
+                        type="patient"
+                        identifier={selectedPatient.id}
+                        name={selectedPatient.fullName}
+                        size="lg"
+                        className="shadow-lg"
+                      />
+                      <div>
                       <div className="flex items-center gap-2 flex-wrap">
                         <span className="px-2.5 py-0.5 rounded-md bg-sky-500 text-white font-mono text-xs font-bold tracking-wide">
                           {selectedPatient.id}
@@ -248,6 +264,7 @@ export const PatientRecordsPage: React.FC = () => {
                         {selectedPatient.age} years • {selectedPatient.gender} • Registered on{' '}
                         {selectedPatient.registrationDate.split('T')[0]}
                       </p>
+                      </div>
                     </div>
 
                     {/* Action buttons */}

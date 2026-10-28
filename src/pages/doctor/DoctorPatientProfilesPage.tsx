@@ -18,6 +18,7 @@ import {
   AlertTriangle,
   ChevronRight,
 } from 'lucide-react';
+import { ProfileImage } from '../../components/common/ProfileImage';
 
 export const DoctorPatientProfilesPage: React.FC = () => {
   const { t } = useLanguage();
@@ -99,13 +100,20 @@ export const DoctorPatientProfilesPage: React.FC = () => {
                     key={p.id}
                     type="button"
                     onClick={() => setSelectedPatientId(p.id)}
-                    className={`w-full p-3.5 text-left transition-all flex items-start justify-between gap-2 ${
+                    className={`w-full p-3.5 text-left transition-all flex items-start gap-3 ${
                       isSelected
                         ? 'bg-blue-50/80 border-l-4 border-blue-600'
                         : 'hover:bg-slate-50 border-l-4 border-transparent'
                     }`}
                   >
-                    <div className="min-w-0">
+                    <ProfileImage
+                      type="patient"
+                      identifier={p.id}
+                      name={p.fullName}
+                      size="sm"
+                      className="mt-0.5"
+                    />
+                    <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-1.5 flex-wrap">
                         <span className="font-bold text-slate-900 text-sm truncate">
                           {p.fullName}
@@ -139,8 +147,16 @@ export const DoctorPatientProfilesPage: React.FC = () => {
               <>
                 {/* Patient Summary Header Card */}
                 <div className="bg-gradient-to-r from-slate-900 via-blue-950 to-slate-900 rounded-2xl p-5 text-white shadow-md">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <div>
+                  <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+                    <div className="flex items-start gap-4">
+                      <ProfileImage
+                        type="patient"
+                        identifier={patient.id}
+                        name={patient.fullName}
+                        size="lg"
+                        className="shadow-lg mt-1"
+                      />
+                      <div>
                       <div className="flex items-center gap-2 flex-wrap">
                         <span className="px-2.5 py-0.5 rounded-md bg-blue-600 text-white font-mono text-xs font-bold">
                           {patient.id}
@@ -163,6 +179,7 @@ export const DoctorPatientProfilesPage: React.FC = () => {
                         {patient.age} years • {patient.gender} • Emergency Contact:{' '}
                         {patient.emergencyContact.name} ({patient.emergencyContact.relationship})
                       </p>
+                      </div>
                     </div>
 
                     <div className="shrink-0">

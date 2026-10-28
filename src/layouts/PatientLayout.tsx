@@ -24,6 +24,7 @@ import {
   Calendar,
   Lock,
 } from 'lucide-react';
+import { ProfileImage } from '../components/common/ProfileImage';
 
 interface PatientLayoutProps {
   children: React.ReactNode;
@@ -305,9 +306,13 @@ export const PatientLayout: React.FC<PatientLayoutProps> = ({ children }) => {
               </div>
 
               <div className="flex items-center gap-3 pl-2 border-l border-slate-200">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-emerald-600 to-teal-700 text-white font-black flex items-center justify-center text-sm shadow-sm ring-2 ring-emerald-100">
-                  {patient?.fullName ? patient.fullName.charAt(0) : 'R'}
-                </div>
+                <ProfileImage
+                  type="patient"
+                  identifier={patient?.id || 'TMH-2026-001'}
+                  name={patient?.fullName || 'Rahul Verma'}
+                  size="sm"
+                  className="shadow-sm"
+                />
                 <div className="text-left">
                   <p className="text-xs font-extrabold text-slate-900 leading-tight">
                     {patient?.fullName || 'Rahul Verma'}

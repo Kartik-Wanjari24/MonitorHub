@@ -16,6 +16,7 @@ import {
   ChevronRight,
   Sparkles,
 } from 'lucide-react';
+import { ProfileImage } from '../../components/common/ProfileImage';
 
 export const StaffDashboardPage: React.FC = () => {
   const { t } = useLanguage();
@@ -239,9 +240,12 @@ export const StaffDashboardPage: React.FC = () => {
                     className="p-4 hover:bg-slate-50/60 transition-colors flex items-center justify-between gap-3"
                   >
                     <div className="flex items-center gap-3.5 min-w-0">
-                      <div className="w-10 h-10 rounded-full bg-[#E6F0FF] text-[#0052cc] font-black flex items-center justify-center text-xs shrink-0">
-                        {patient.gender === 'Female' ? 'F' : 'M'}
-                      </div>
+                      <ProfileImage
+                        type="patient"
+                        identifier={patient.id}
+                        name={patient.fullName}
+                        size="sm"
+                      />
                       <div className="min-w-0">
                         <div className="flex items-center gap-2">
                           <p className="font-extrabold text-slate-900 text-sm truncate">
@@ -297,10 +301,12 @@ export const StaffDashboardPage: React.FC = () => {
                     className="p-4 hover:bg-slate-50/60 transition-colors flex items-center justify-between gap-3"
                   >
                     <div className="flex items-center gap-3.5 min-w-0">
-                      <div className="w-11 h-11 rounded-2xl bg-indigo-50 border border-indigo-100 flex flex-col items-center justify-center shrink-0">
-                        <Clock className="w-3.5 h-3.5 text-indigo-600 mb-0.5" />
-                        <span className="text-[10px] font-black text-indigo-950">{apt.time}</span>
-                      </div>
+                      <ProfileImage
+                        type="patient"
+                        identifier={apt.patientId}
+                        name={apt.patientName}
+                        size="sm"
+                      />
                       <div className="min-w-0">
                         <p className="font-extrabold text-slate-900 text-sm truncate">
                           {apt.patientName}

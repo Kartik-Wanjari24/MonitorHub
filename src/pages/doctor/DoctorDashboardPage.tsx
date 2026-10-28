@@ -12,6 +12,7 @@ import {
   ArrowRight,
   UserCheck,
 } from 'lucide-react';
+import { ProfileImage } from '../../components/common/ProfileImage';
 
 export const DoctorDashboardPage: React.FC = () => {
   const { t } = useLanguage();
@@ -87,11 +88,13 @@ export const DoctorDashboardPage: React.FC = () => {
                 </div>
 
                 {/* Doctor Avatar / Photo Frame */}
-                <div className="w-20 h-20 rounded-2xl bg-white/10 p-1 border border-white/20 shadow-md shrink-0">
-                  <div className="w-full h-full rounded-xl bg-gradient-to-tr from-blue-500 to-indigo-600 flex items-center justify-center font-black text-2xl text-white">
-                    AS
-                  </div>
-                </div>
+                <ProfileImage
+                  type="doctor"
+                  identifier={td.drName}
+                  name={td.drName}
+                  size="xl"
+                  className="rounded-2xl shadow-md"
+                />
               </div>
             </div>
 
@@ -107,9 +110,13 @@ export const DoctorDashboardPage: React.FC = () => {
 
               {patientInConsult ? (
                 <div className="flex items-center gap-3 py-1">
-                  <div className="w-12 h-12 rounded-full bg-blue-50 border border-blue-200 text-[#0052cc] font-black text-base flex items-center justify-center shrink-0">
-                    {patientInConsult.fullName.charAt(0)}
-                  </div>
+                  <ProfileImage
+                    type="patient"
+                    identifier={patientInConsult.id}
+                    name={patientInConsult.fullName}
+                    size="md"
+                    className="shadow-sm"
+                  />
                   <div>
                     <h4 className="font-extrabold text-slate-900 text-base leading-tight">
                       {patientInConsult.fullName}
@@ -161,9 +168,12 @@ export const DoctorDashboardPage: React.FC = () => {
                     className="flex items-center justify-between p-2.5 rounded-2xl border border-slate-100 hover:border-blue-200 hover:bg-blue-50/40 transition-all group"
                   >
                     <div className="flex items-center gap-2.5 min-w-0">
-                      <div className="w-8 h-8 rounded-full bg-slate-100 text-slate-700 font-bold text-xs flex items-center justify-center shrink-0">
-                        {item.patientName.charAt(0)}
-                      </div>
+                      <ProfileImage
+                        type="patient"
+                        identifier={item.patientId}
+                        name={item.patientName}
+                        size="xs"
+                      />
                       <div className="min-w-0">
                         <p className="text-xs font-bold text-slate-800 truncate group-hover:text-blue-600">
                           {item.patientName}

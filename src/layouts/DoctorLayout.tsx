@@ -22,6 +22,7 @@ import {
   Lock,
   Box,
 } from 'lucide-react';
+import { ProfileImage } from '../components/common/ProfileImage';
 
 interface DoctorLayoutProps {
   children: React.ReactNode;
@@ -369,9 +370,13 @@ export const DoctorLayout: React.FC<DoctorLayoutProps> = ({ children }) => {
 
               {/* User Avatar & Name */}
               <div className="flex items-center gap-3 pl-2 border-l border-slate-200">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-blue-600 to-indigo-600 text-white font-black flex items-center justify-center text-sm shadow-sm ring-2 ring-blue-100">
-                  AS
-                </div>
+                <ProfileImage
+                  type="doctor"
+                  identifier={td.drName}
+                  name={td.drName}
+                  size="sm"
+                  className="shadow-sm"
+                />
                 <div className="text-left">
                   <p className="text-xs font-extrabold text-slate-900 leading-tight">
                     {td.drName}

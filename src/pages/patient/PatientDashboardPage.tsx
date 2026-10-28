@@ -14,6 +14,7 @@ import {
   ChevronRight,
   Sparkles,
 } from 'lucide-react';
+import { ProfileImage } from '../../components/common/ProfileImage';
 
 export const PatientDashboardPage: React.FC = () => {
   const { t } = useLanguage();
@@ -86,17 +87,26 @@ export const PatientDashboardPage: React.FC = () => {
       <div className="space-y-6">
         {/* Welcome Greeting Banner (Reference Plum Gradient) */}
         <div className="rounded-[2rem] p-7 sm:p-9 bg-gradient-to-br from-[#504068] via-[#46365C] to-[#392B4E] text-white shadow-xl relative overflow-hidden">
-          <div className="relative z-10 max-w-2xl space-y-2">
-            <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white/15 text-purple-200 text-xs font-bold tracking-wide border border-white/20">
-              <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-              <span>Personal Care Dashboard</span>
-            </span>
-            <h1 className="text-3xl sm:text-4xl font-black tracking-tight">
-              {tp.welcomeBack} {patient?.fullName || 'Rahul Verma'}!
-            </h1>
-            <p className="text-sm text-purple-100/90 leading-relaxed font-medium">
-              Check your hospital token, doctor rounds, medication reminders, test reports, and non-emergency help requests anytime.
-            </p>
+          <div className="relative z-10 flex items-start gap-5">
+            <ProfileImage
+              type="patient"
+              identifier={patient?.id || 'TMH-2026-001'}
+              name={patient?.fullName || 'Rahul Verma'}
+              size="xl"
+              className="shadow-lg hidden sm:block"
+            />
+            <div className="max-w-2xl space-y-2">
+              <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white/15 text-purple-200 text-xs font-bold tracking-wide border border-white/20">
+                <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+                <span>Personal Care Dashboard</span>
+              </span>
+              <h1 className="text-3xl sm:text-4xl font-black tracking-tight">
+                {tp.welcomeBack} {patient?.fullName || 'Rahul Verma'}!
+              </h1>
+              <p className="text-sm text-purple-100/90 leading-relaxed font-medium">
+                Check your hospital token, doctor rounds, medication reminders, test reports, and non-emergency help requests anytime.
+              </p>
+            </div>
           </div>
         </div>
 
